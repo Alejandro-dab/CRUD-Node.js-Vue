@@ -2,27 +2,21 @@ require('dotenv').config() //Imporación de dontenv
 const express = require('express'); //Importación de express
 const app = express(); //Invocación de express
 const conexion = require('./config/db'); //Importación de la base de datos y de conexion MYSQL
+const rutasInsumos = require('./routes/insumos'); //Importar la ruta de insumos
 
-app.get('/', function(req, res){
-    res.send('Ruta INICIO');
-});
+// Permite que el servidor entienda datos en formato JSON
+app.use(express.json());
 
 //Variable de entorno, por si el puerto 3000 esta ocupado
 const puerto = process.env.PUERTO || 3000;
 
-// RUTA DE PRUEBA (Borrar después)
-app.get('/probar-conexion', function(req, res){
-    // Intentamos pedirle todos los datos a la tabla 'Existencias'
-    conexion.query('SELECT * FROM Existencias', function(error, filas){
-        if(error){
-            // Si falla, mostramos el error en pantalla
-            res.send("Error en la consulta: " + error);
-        } else {
-            // Si funciona, mostramos los datos en formato JSON
-            res.json(filas);
-        }
-    });
+//Ruta principal
+app.get('/', function(req, res){
+    res.send('Bienvenido al Sistema de Inventario de Obra');
 });
+
+//Invocar las rutas, la api con el CRUD
+app.use('/api/insumos', rutasInsumos);
 
 // Puerto como número (3000 en lugar de '3000')
 app.listen(puerto, function(error){
