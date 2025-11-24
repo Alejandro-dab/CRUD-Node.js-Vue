@@ -58,10 +58,30 @@ const eliminar = (req, res) => {
     });
 };
 
+// Método para obtenr GET por ID (Para el edit)
+const obtenerUno = (req, res) => {
+    // 1. Capturamos el ID que viene en la URL
+    const { id } = req.params; 
+
+    // 2. Ejecutamos la consulta con un WHERE
+    const sql = 'SELECT * FROM Existencias WHERE id = ?';
+    
+    conexion.query(sql, [id], (error, filas) => {
+        if(error) return res.status(500).json({ error: error });
+
+        // 3. Si no encuentra nada, devuelve un 404
+        if(filas.length === 0) return res.status(404).json({ mensaje: "Insumo no encontrado" });
+
+        // 4. Si lo encuentra, devuelve solo el primer elemento del array
+        res.json(filas[0]); 
+    });
+};
+
 //Exportar el metodo para reutilizarlo
 module.exports = {
     listar,
     crear, 
     editar, 
-    eliminar
+    eliminar,
+    obtenerUno
 };

@@ -12,5 +12,7 @@ router.post('/', insumosController.crear);
 router.put('/:id', insumosController.editar);   
 //Definición de ruta para el DELETE
 router.delete('/:id', insumosController.eliminar); 
+//Definición de ruta para Get por ID
+router.get('/:id', insumosController.obtenerUno);
 
 module.exports = router;

@@ -1,0 +1,48 @@
+/* 1. Limpieza total del body */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  font-family: sans-serif;
+  /* Esto asegura que no haya márgenes raros */
+  display: block; 
+  place-items: start; 
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* 2. El contenedor principal (#app) */
+#app {
+  /* Forzamos a que ocupe el 100% del ancho y se centre */
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto; /* Esto centra horizontalmente */
+  padding: 2rem;
+  
+  /* Quitamos cualquier grid o flex raro que tuviera antes */
+  display: flex;
+  flex-direction: column; /* Todo uno debajo del otro */
+  align-items: center; /* Todo centrado al medio */
+  font-weight: normal;
+}
+
+/* 3. Arreglamos el menú de navegación */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centrar el menú */
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+/* 4. Estilos de la tabla y títulos */
+h1 {
+  text-align: center;
+  color: #42b883;
+}
+
+.contenedor-tabla {
+  width: 100%; /* Que la tabla use todo el espacio disponible */
+  max-width: 900px; /* Pero que no se estire demasiado en pantallas gigantes */
+}

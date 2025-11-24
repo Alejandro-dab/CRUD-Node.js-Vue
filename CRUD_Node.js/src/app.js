@@ -3,6 +3,10 @@ const express = require('express'); //Importación de express
 const app = express(); //Invocación de express
 const conexion = require('./config/db'); //Importación de la base de datos y de conexion MYSQL
 const rutasInsumos = require('./routes/insumos'); //Importar la ruta de insumos
+const cors = require('cors'); //Importación de cors para evitar el bloqueo de puertos por navegador
+
+//Permite entrar a todos los puertos
+app.use(cors());
 
 // Permite que el servidor entienda datos en formato JSON
 app.use(express.json());
