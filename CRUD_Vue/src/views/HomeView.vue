@@ -8,7 +8,7 @@ const insumos = ref([]);
 
 const obtenerInsumos = async () => {
   try {
-    const respuesta = await axios.get('http://localhost:7000/api/insumos');
+    const respuesta = await axios.get('crud-nodejs-vue-production.up.railway.app');
     insumos.value = respuesta.data;
   } catch (error) {
     console.error("Error al obtener insumos:", error);
@@ -19,7 +19,7 @@ const obtenerInsumos = async () => {
 const eliminarInsumo = async (id, nombre) => {
   if (confirm(`¿Borrar ${nombre}?`)) {
     try {
-      await axios.delete(`http://localhost:7000/api/insumos/${id}`);
+      await axios.delete(`crud-nodejs-vue-production.up.railway.app${id}`);
       obtenerInsumos(); // Recargamos la tabla
     } catch (error) {
       alert('Error al eliminar');

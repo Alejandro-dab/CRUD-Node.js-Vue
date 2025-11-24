@@ -22,7 +22,7 @@ const cargarDatos = async () => {
         
         try {
             // 2. Pedimos los datos al Backend
-            const respuesta = await axios.get(`http://localhost:7000/api/insumos/${id.value}`);
+            const respuesta = await axios.get(`crud-nodejs-vue-production.up.railway.app${id.value}`);
             const data = respuesta.data;
             
             // 3. Llenamos las variables reactivas con los datos que llegaron
@@ -47,11 +47,11 @@ const guardar = async () => {
     try {
         if (esEdicion.value) {
             // Si es edición, usamos PUT
-            await axios.put(`http://localhost:7000/api/insumos/${id.value}`, datos);
+            await axios.put(`crud-nodejs-vue-production.up.railway.app${id.value}`, datos);
             alert('¡Actualizado con éxito!');
         } else {
             // Si no es edición, usamos POST
-            await axios.post('http://localhost:7000/api/insumos', datos);
+            await axios.post('crud-nodejs-vue-production.up.railway.app', datos);
             alert('¡Guardado con éxito!');
         }
         
