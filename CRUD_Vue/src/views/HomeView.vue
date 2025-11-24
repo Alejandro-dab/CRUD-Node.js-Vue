@@ -8,7 +8,8 @@ const insumos = ref([]);
 
 const obtenerInsumos = async () => {
   try {
-    const respuesta = await axios.get('crud-nodejs-vue-production.up.railway.app');
+    // Usamos import.meta.env.VITE_API_URL y le pegamos el resto de la ruta
+  const respuesta = await axios.get(import.meta.env.VITE_API_URL + '/api/insumos');
     insumos.value = respuesta.data;
   } catch (error) {
     console.error("Error al obtener insumos:", error);
@@ -17,12 +18,18 @@ const obtenerInsumos = async () => {
 
 // 3. Función Nueva para Borrar
 const eliminarInsumo = async (id, nombre) => {
-  if (confirm(`¿Borrar ${nombre}?`)) {
+  if (confirm(`¿Estás seguro de borrar: ${nombre}?`)) {
     try {
-      await axios.delete(`crud-nodejs-vue-production.up.railway.app${id}`);
-      obtenerInsumos(); // Recargamos la tabla
+      //Usar la variable de entorno para que jale en Railway también
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/insumos/${id}`);
+    
+      //Invocar obtenerInsumos
+      obtenerInsumos(); 
+      
+      alert('Eliminado correctamente');
     } catch (error) {
-      alert('Error al eliminar');
+      console.error("Error al borrar:", error);
+      alert('No se pudo borrar');
     }
   }
 };
