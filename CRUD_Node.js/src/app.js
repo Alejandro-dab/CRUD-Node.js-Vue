@@ -12,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 //Variable de entorno, por si el puerto 3000 esta ocupado
-const puerto = process.env.PUERTO || 3000;
+// Railway siempre inyecta una variable llamada PORT (en inglés)
+const puerto = process.env.PORT || 3000;
 
 //Ruta principal
 app.get('/', function(req, res){
