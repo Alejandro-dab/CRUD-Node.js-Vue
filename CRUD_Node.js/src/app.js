@@ -15,14 +15,6 @@ app.use(express.json());
 // Railway siempre inyecta una variable llamada PORT (en inglés)
 const puerto = process.env.PORT || 3000;
 
-app.listen(puerto, function(error){
-    if(error){
-        console.log("Hubo un error: ", error);
-    } else {
-        console.log("Servidor Ok en puerto: " + puerto);
-    }
-});
-
 //Ruta principal
 app.get('/', function(req, res){
     res.send('Bienvenido al Sistema de Inventario de Obra');
