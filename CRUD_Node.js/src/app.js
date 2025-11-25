@@ -1,9 +1,11 @@
 require('dotenv').config() //Imporación de dontenv
 const express = require('express'); //Importación de express
+const cors = require('cors'); //Importación de cors para evitar el bloqueo de puertos por navegador
+
 const app = express(); //Invocación de express
 const conexion = require('./config/db'); //Importación de la base de datos y de conexion MYSQL
 const rutasInsumos = require('./routes/insumos'); //Importar la ruta de insumos
-const cors = require('cors'); //Importación de cors para evitar el bloqueo de puertos por navegador
+
 
 //Permite que cualquier frontend consulte la API
 app.use(cors({
@@ -26,10 +28,11 @@ app.get('/', function(req, res){
 app.use('/api/insumos', rutasInsumos);
 
 // Puerto como número (3000 en lugar de '3000')
-app.listen(puerto, '0.0.0.0', function(error){
-    if(error){
-        console.log("Hubo un error: ", error);
+// Servidor
+app.listen(puerto, '0.0.0.0', (error) => {
+    if (error) {
+        console.log("Hubo un error:", error);
     } else {
-        console.log("Servidor Ok en puerto: "+puerto);
+        console.log("Servidor Ok en puerto:", puerto);
     }
 });
