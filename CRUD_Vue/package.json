@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix --cache"
+    "start": "serve -s dist -l $PORT"
   },
   "dependencies": {
     "axios": "^1.13.2",
@@ -24,6 +24,7 @@
     "eslint": "^9.37.0",
     "eslint-plugin-vue": "~10.5.0",
     "globals": "^16.4.0",
+    "serve": "^14.2.5",
     "vite": "^7.1.11",
     "vite-plugin-vue-devtools": "^8.0.3"
   }
