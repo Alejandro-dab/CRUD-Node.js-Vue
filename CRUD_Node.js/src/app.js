@@ -5,8 +5,10 @@ const conexion = require('./config/db'); //Importación de la base de datos y de
 const rutasInsumos = require('./routes/insumos'); //Importar la ruta de insumos
 const cors = require('cors'); //Importación de cors para evitar el bloqueo de puertos por navegador
 
-//Permite entrar a todos los puertos
-app.use(cors());
+//Permite entrar solo al puerto del frontend
+app.use(cors({
+    origin: 'https://nuevo-nombre-production.up.railway.app' 
+}));
 
 // Permite que el servidor entienda datos en formato JSON
 app.use(express.json());
