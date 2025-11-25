@@ -1,4 +1,5 @@
 require('dotenv').config();
+console.log("=== ESTE ES EL APP.JS DEL BACKEND REAL ==="); 
 const mysql = require('mysql2');
 
 const conexion = mysql.createConnection({
