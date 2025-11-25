@@ -1,6 +1,8 @@
 require('dotenv').config();
-console.log("=== ESTE ES EL APP.JS DEL BACKEND REAL ==="); 
 const mysql = require('mysql2');
+
+console.log("=== CARGANDO CONFIGURACIÓN DE BASE DE DATOS ===");
+console.log("DB_HOST:", process.env.DB_HOST);
 
 const conexion = mysql.createConnection({
     host: process.env.DB_HOST || process.env.MYSQLHOST,
@@ -12,7 +14,7 @@ const conexion = mysql.createConnection({
 
 conexion.connect((error) => {
     if(error){
-        console.log("Error de conexión: " + error);
+        console.log("Error de conexión:", error);
         return;
     }
     console.log("¡Conectado a la Base de Datos exitosamente!");
