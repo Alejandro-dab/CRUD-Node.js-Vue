@@ -26,7 +26,7 @@ app.get('/', function(req, res){
 app.use('/api/insumos', rutasInsumos);
 
 // Puerto como número (3000 en lugar de '3000')
-app.listen(puerto, function(error){
+app.listen(puerto, '0.0.0.0', function(error){
     if(error){
         console.log("Hubo un error: ", error);
     } else {
