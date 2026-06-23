@@ -12,9 +12,6 @@ const conexion = mysql.createConnection({
     port: process.env.DB_PORT || process.env.MYSQLPORT || 3306
 });
 
-console.log("PORT:", process.env.PORT);
-console.log("PUERTO FINAL:", puerto);
-
 conexion.connect((error) => {
     if(error){
         console.log("Error de conexión:", error);
