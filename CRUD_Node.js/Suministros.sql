@@ -1,62 +1,20 @@
--- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
---
--- Host: mysql-10aeb02f-alejandro-b890.f.aivencloud.com    Database: Suministros
--- ------------------------------------------------------
--- Server version	8.4.8
+drop database IF EXISTS  suministros;
+CREATE database suministros; 
+USE suministros;      
+        
+CREATE TABLE Existencias(
+	id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    descripcion VARCHAR (50) NOT NULL,
+    precio DECIMAL(10,2)NOT NULL,
+    stock INT NOT NULL
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
-SET @@SESSION.SQL_LOG_BIN= 0;
+INSERT INTO Existencias (id, descripcion, precio, stock)
+VALUES ('1', 'Cemento', 350.5, 112);
 
---
--- GTID state at the beginning of the backup 
---
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'e2034d8e-6e13-11f1-be8f-b251dbdaf20a:1-43';
+Use suministros; 
+SELECT * FROM Existencias; 
 
---
--- Table structure for table `Existencias`
---
 
-DROP TABLE IF EXISTS `Existencias`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Existencias` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(255) NOT NULL,
-  `precio` decimal(10,2) NOT NULL,
-  `stock` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Existencias`
---
-
-LOCK TABLES `Existencias` WRITE;
-/*!40000 ALTER TABLE `Existencias` DISABLE KEYS */;
-INSERT INTO `Existencias` VALUES (1,'Varillas',120.00,1350),(2,'Cemento Cruz Azul',344.50,983);
-/*!40000 ALTER TABLE `Existencias` ENABLE KEYS */;
-UNLOCK TABLES;
-SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2026-06-22  2:53:07
