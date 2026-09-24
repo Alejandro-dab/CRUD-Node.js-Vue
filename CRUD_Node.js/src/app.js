@@ -36,3 +36,5 @@ app.listen(puerto, '0.0.0.0', (error) => {
         console.log("Servidor Ok en puerto:", puerto);
     }
 });
+
+module.exports = app; //Vercel necesita importar el objeto
