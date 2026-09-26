@@ -13,6 +13,14 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD,
     database: process.env.DB_NAME || process.env.MYSQLDATABASE,
     port: process.env.DB_PORT || process.env.MYSQLPORT || 3306,
+
+    //Aiven requiere de la conexión cifrada sino rechazara en producción 
+    //?  activa cifrado sin verificar el certificado CA
+    //? ssl define los parametros de cifrado entre Node.js y MySQL en la nube
+    //Si el DB_SSL es igual a true entonces recibira ese objeto, si es false (como en local) 
+    //es indefinido y no es necesario
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
