@@ -7,6 +7,8 @@ console.log("DB_HOST:", process.env.DB_HOST || process.env.MYSQLHOST);
 // Pool en vez de conexión única: si Railway/MySQL cierran el socket por
 // inactividad, una sola conexión se queda "muerta" hasta reiniciar el server.
 // El pool abre conexiones nuevas solo cuando se necesitan.
+//! Al hacer deployment las variables de entorno van sin comillas
+//! El nombre de la base de datos es considerando Minusculas y Mayusculas
 const pool = mysql.createPool({
     host: process.env.DB_HOST || process.env.MYSQLHOST,
     user: process.env.DB_USER || process.env.MYSQLUSER,
@@ -18,8 +20,9 @@ const pool = mysql.createPool({
     //?  activa cifrado sin verificar el certificado CA
     //? ssl define los parametros de cifrado entre Node.js y MySQL en la nube
     //Si el DB_SSL es igual a true entonces recibira ese objeto, si es false (como en local) 
-    //es indefinido y no es necesario
-    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+    // false en lugar de undefined, evita que la librería mysql2 se confunda en local y garantiza que apague el cifrado correctamente.
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+
 
     waitForConnections: true,
     connectionLimit: 10,
